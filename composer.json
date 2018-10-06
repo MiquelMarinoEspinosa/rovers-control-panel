@@ -1,23 +1,22 @@
 {
-    "name": "php/fpm",
+    "name": "nasa/rover-control-panel",
     "license": "free",
-    "description": "PHP Fpm",
-    "keywords": ["php","Fpm"],
+    "description": "Rover Control Panel",
+    "keywords": ["nasa","rover", "control", "panel"],
     "authors": [
         {
-            "name": "php",
-            "email": "fpm@gmail.com"
+            "name": "nasa",
+            "email": "nasa@mail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Php\\Fpm\\": "src"
+            "RoverControlPanel\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Php\\Fpm\\Tests\\Unit\\": "tests/unit/",
-            "Php\\Fpm\\Tests\\Acceptance\\": "tests/acceptance/"
+            "RoverControlPanel\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "require": {

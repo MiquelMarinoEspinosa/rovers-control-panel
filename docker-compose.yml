@@ -4,44 +4,34 @@ services:
     php-fpm:
         build:
             context: etc/devel/docker/php-fpm
-        image: miquel/php-fpm
-        container_name: miquel.php-fpm
+        image: nasa/php-fpm
+        container_name: nasa.php-fpm
         volumes:
             - ".:/app"
         extra_hosts:
             - "docker.host:${DOCKER_HOST_IP}"
-            - "site.org:172.19.0.3"
+            - "rovers-control-panel.nasa.org:172.19.0.3"
         networks:
-            miquel_net:
+            nasa_net:
                 ipv4_address: 172.19.0.2
         tty: true
 
     nginx:
         build:
             context: etc/devel/docker/nginx
-        image: miquel/nginx
-        container_name: miquel.nginx
+        image: nasa/nginx
+        depends_on:
+            - php-fpm
+        container_name: nasa.nginx
         ports:
             - 443:443
         networks:
-            miquel_net:
+            nasa_net:
                 ipv4_address: 172.19.0.3
         tty: true
 
-    redis:
-        build:
-            context: etc/devel/docker/redis
-        image: miquel/redis
-        container_name: miquel.redis
-        ports:
-            - 6379:6379
-        networks:
-            miquel_net:
-                ipv4_address: 172.19.0.4
-        tty: true
-
 networks:
-    miquel_net:
+    nasa_net:
         driver: bridge
         ipam:
             config:
