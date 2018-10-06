@@ -1,6 +1,6 @@
 <?php
 
-namespace RoverControlPanel\Unit\Domain\Model;
+namespace RoverControlPanel\Unit\Domain\Model\Rover;
 
 use PHPUnit\Framework\TestCase;
 use RoverControlPanel\Domain\Model\Rover\Coordinates;
@@ -30,7 +30,7 @@ class CoordinatesTest extends TestCase
         $coordinates = new Coordinates($abscissa, $ordinate);
         $this->assertSame(
             $abscissa,
-            $coordinates->getAbscissa()
+            $coordinates->abscissa()
         );
     }
 
@@ -41,7 +41,7 @@ class CoordinatesTest extends TestCase
         $coordinates = new Coordinates($abscissa, $ordinate);
         $this->assertSame(
             $ordinate,
-            $coordinates->getOrdinate()
+            $coordinates->ordinate()
         );
     }
 }

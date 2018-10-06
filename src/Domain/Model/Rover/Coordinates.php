@@ -4,9 +4,9 @@ namespace RoverControlPanel\Domain\Model\Rover;
 
 class Coordinates
 {
-    const MIN_VALUE = 0;
-    const ORDINATE = 'ordinate';
-    const ABSCISSA = 'abscissa';
+    private const MIN_VALUE = 0;
+    private const ORDINATE = 'ordinate';
+    private const ABSCISSA = 'abscissa';
 
     /** @var int */
     private $abscissa;
@@ -19,33 +19,39 @@ class Coordinates
         $this->setOrdinate($ordinate);
     }
 
-    private function setAbscissa(int $abscissa): void
+    private function setAbscissa($abscissa): void
     {
         $this->validate(self::ABSCISSA, $abscissa);
-        $this->abscissa = $abscissa;
+        $this->abscissa = (int) $abscissa;
     }
 
-    private function setOrdinate(int $ordinate): void
+    private function setOrdinate($ordinate): void
     {
         $this->validate(self::ORDINATE, $ordinate);
-        $this->ordinate = $ordinate;
+        $this->ordinate = (int) $ordinate;
     }
 
-    private function validate(string $name, int $value): void
+    private function validate(string $name, $value): void
     {
-        if (self::MIN_VALUE > $value) {
+        if (!is_int($value)) {
+            throw new \InvalidArgumentException(
+                "The $name has to be numeric. Given: $value"
+            );
+        }
+
+        if (self::MIN_VALUE > (int) $value) {
             throw new \InvalidArgumentException(
                 "The $name has to be a number greater or equal 0. Given: $value"
             );
         }
     }
 
-    public function getAbscissa(): int
+    public function abscissa(): int
     {
         return $this->abscissa;
     }
 
-    public function getOrdinate(): int
+    public function ordinate(): int
     {
         return $this->ordinate;
     }
