@@ -6,35 +6,71 @@ class Plateau
 {
     private const ORIGIN = 0;
 
+    /** @var Coordinates */
+    private $topRight;
+
+    private function __construct(Coordinates $topRight)
+    {
+        $this->setTopRight($topRight);
+    }
+
     public static function create($topRightAbscissa, $topRightOrdinate): self
     {
-        //if (!is_int($topRightAbscissa)) {
 
-        //}
+        try {
+            $coordinates = new Coordinates($topRightAbscissa, $topRightOrdinate);
+        } catch (\InvalidArgumentException $invalidArgumentException) {
+            $message = 'Plateau creation error: ' . $invalidArgumentException->getMessage();
+            throw new \InvalidArgumentException($message);
+        }
 
-        //if (!is_int($topRightOrdinate)) {
+        return new self($coordinates);
+    }
 
-        //}
-
-        if (0 >= $topRightAbscissa || 0 >= $topRightOrdinate) {
+    private function setTopRight(Coordinates $topRight)
+    {
+        $abscissa = $topRight->abscissa();
+        $ordinate = $topRight->ordinate();
+        if ($this->origin() >= $abscissa || $this->origin() >= $ordinate) {
             throw new \InvalidArgumentException(
-                'Top Right Coordinates have to be greater than Bottom Left Coordinates.' . PHP_EOL
+                'Plateau creation error:' . PHP_EOL
+                . 'Top Right Coordinates have to be greater than Bottom Left Coordinates.' . PHP_EOL
                 . "Given Bottom Right Coordinates: 0 0" . PHP_EOL
-                . "Given Top Left Coordinates: "
+                . "Given Top Left Coordinates: $abscissa $ordinate"
             );
         }
 
-        if ($topRightAbscissa !== $topRightOrdinate) {
+        if ($abscissa !== $ordinate) {
             throw new \InvalidArgumentException(
-                'Top Right coordinates have to be euql.' . PHP_EOL
-                . "Given Bottom Right Coordinates: "
+                'Plateau creation error:' . PHP_EOL
+                . 'Top Right coordinates have to be euql.' . PHP_EOL
+                . "Given Bottom Right Coordinates: $abscissa $ordinate"
             );
         }
-
-        return new self();
+        $this->topRight = $topRight;
     }
 
     public function bottomLeftAbscissa(): int
+    {
+        return $this->origin();
+    }
+
+    public function bottomLeftOrdinate(): int
+    {
+        return $this->origin();
+    }
+
+    public function topRightAbscissa(): int
+    {
+        return $this->topRight->abscissa();
+    }
+
+    public function topRightOrdinate(): int
+    {
+        return $this->topRight->ordinate();
+    }
+
+    private function origin(): int
     {
         return self::ORIGIN;
     }
