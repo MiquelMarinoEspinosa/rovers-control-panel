@@ -65,4 +65,14 @@ class Coordinates
     {
         return new self($this->abscissa, $this->ordinate + 1);
     }
+
+    public function decrementAbscissa(): self
+    {
+        return new self($this->abscissa - 1, $this->ordinate);
+    }
+
+    public function decrementOrdinate(): self
+    {
+        return new self($this->abscissa, $this->ordinate - 1);
+    }
 }

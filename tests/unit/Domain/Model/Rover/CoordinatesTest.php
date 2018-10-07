@@ -82,4 +82,44 @@ class CoordinatesTest extends TestCase
             $coordinates->incrementOrdinate()->ordinate()
         );
     }
+
+    public function testDecrementAbscissaToNegativeValueShouldThrowAnException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $abscissa = 0;
+        $ordinate = 0;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $coordinates->decrementAbscissa();
+    }
+
+    public function testDecrementOrdinateToNegativeValueShouldThrowAnException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $abscissa = 0;
+        $ordinate = 0;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $coordinates->decrementOrdinate();
+    }
+
+    public function testShouldDecrementTheAbscissaValue()
+    {
+        $abscissa = 1;
+        $ordinate = 1;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $this->assertSame(
+            $abscissa - 1,
+            $coordinates->decrementAbscissa()->abscissa()
+        );
+    }
+
+    public function testShouldDecrementTheOrdinateValue()
+    {
+        $abscissa = 1;
+        $ordinate = 1;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $this->assertSame(
+            $ordinate - 1,
+            $coordinates->decrementOrdinate()->ordinate()
+        );
+    }
 }
