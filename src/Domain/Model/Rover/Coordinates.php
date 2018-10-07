@@ -35,13 +35,13 @@ class Coordinates
     {
         if (!is_int($value)) {
             throw new \InvalidArgumentException(
-                "The coordinate $name has to be an integer value. Given: $value"
+                "The COORDINATE $name has to be an integer value. Given: $value"
             );
         }
 
         if (self::MIN_VALUE > (int) $value) {
             throw new \InvalidArgumentException(
-                "The coordinate $name has to be a number greater or equal 0. Given: $value"
+                "The COORDINATE $name has to be a number greater or equal 0. Given: $value"
             );
         }
     }

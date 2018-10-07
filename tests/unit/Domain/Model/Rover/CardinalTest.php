@@ -7,7 +7,7 @@ use RoverControlPanel\Domain\Model\Rover\Cardinal;
 
 class CardinalTest extends TestCase
 {
-    private const VALID_VALUES = Cardinal::ALLOWED_VALUES;
+    private const VALID_VALUES = [Cardinal::ALLOWED_VALUES];
 
     public function testCardinalValueShouldBeValid()
     {
@@ -18,6 +18,7 @@ class CardinalTest extends TestCase
 
     /**
      * @dataProvider getValidValues
+     * @param string $value
      */
     public function testValidCardinalShouldReturnTheValue(string $value)
     {
@@ -30,6 +31,6 @@ class CardinalTest extends TestCase
 
     public function getValidValues(): array
     {
-        return [self::VALID_VALUES];
+        return self::VALID_VALUES;
     }
 }

@@ -20,7 +20,7 @@ class Plateau
         try {
             $coordinates = new Coordinates($topRightAbscissa, $topRightOrdinate);
         } catch (\InvalidArgumentException $invalidArgumentException) {
-            $message = 'Plateau creation error: ' . $invalidArgumentException->getMessage();
+            $message = 'PLATEAU creation error: ' . $invalidArgumentException->getMessage();
             throw new \InvalidArgumentException($message);
         }
 
@@ -33,7 +33,7 @@ class Plateau
         $ordinate = $topRight->ordinate();
         if ($this->origin() >= $abscissa || $this->origin() >= $ordinate) {
             throw new \InvalidArgumentException(
-                'Plateau creation error:' . PHP_EOL
+                'PLATEAU creation error:' . PHP_EOL
                 . 'Top Right Coordinates have to be greater than Bottom Left Coordinates.' . PHP_EOL
                 . "Given Bottom Right Coordinates: 0 0" . PHP_EOL
                 . "Given Top Left Coordinates: $abscissa $ordinate"
@@ -42,7 +42,7 @@ class Plateau
 
         if ($abscissa !== $ordinate) {
             throw new \InvalidArgumentException(
-                'Plateau creation error:' . PHP_EOL
+                'PLATEAU creation error:' . PHP_EOL
                 . 'Top Right coordinates have to be euql.' . PHP_EOL
                 . "Given Bottom Right Coordinates: $abscissa $ordinate"
             );

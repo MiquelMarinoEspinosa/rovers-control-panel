@@ -2,17 +2,15 @@
 
 namespace RoverControlPanel\Domain\Model\Rover;
 
-class Cardinal
+class Movement
 {
-    private const NORTH = 'N';
-    private const SOUTH = 'S';
-    private const EAST = 'E';
-    private const WEST = 'W';
+    private const LEFT = 'L';
+    private const RIGHT = 'R';
+    private const FORWARD = 'M';
     const ALLOWED_VALUES = [
-        self::NORTH,
-        self::SOUTH,
-        self::EAST,
-        self::WEST
+        self::LEFT,
+        self::RIGHT,
+        self::FORWARD
     ];
 
     /** @var string $value */
@@ -27,14 +25,13 @@ class Cardinal
     {
         if (!in_array($value, self::ALLOWED_VALUES, true)) {
             $validValues = implode(',', self::ALLOWED_VALUES);
-            throw new \InvalidArgumentException(
-                "Invalid CARDINAL value. Valid Values: $validValues. Given: $value"
-            );
+            throw new \InvalidArgumentException("Invalid MOVEMENT value. Valid Values: $validValues. Given: $value");
         }
+
         $this->value = $value;
     }
 
-    public function getValue(): string
+    public function value(): string
     {
         return $this->value;
     }
