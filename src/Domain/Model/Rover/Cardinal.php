@@ -4,10 +4,10 @@ namespace RoverControlPanel\Domain\Model\Rover;
 
 class Cardinal
 {
-    private const NORTH = 'N';
-    private const SOUTH = 'S';
-    private const EAST = 'E';
-    private const WEST = 'W';
+    const NORTH = 'N';
+    const SOUTH = 'S';
+    const EAST = 'E';
+    const WEST = 'W';
     private const ALLOWED_VALUES = [
         self::NORTH,
         self::SOUTH,

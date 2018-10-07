@@ -7,11 +7,14 @@ use RoverControlPanel\Domain\Model\Rover\Movement;
 
 class MovementTest extends TestCase
 {
+    private const LEFT = 'L';
+    private const RIGHT = 'R';
+    private const FORWARD = 'M';
     private const VALID_VALUES = [
         [
-            'L',
-            'R',
-            'M'
+            self::LEFT,
+            self::RIGHT,
+            self::FORWARD
         ]
     ];
 
@@ -32,6 +35,20 @@ class MovementTest extends TestCase
         $this->assertEquals(
             $value,
             $movement->value()
+        );
+    }
+
+    public function testIsForwardMovement()
+    {
+        $this->assertTrue(
+            (new Movement(self::FORWARD))->isForward()
+        );
+    }
+
+    public function testIsNotForwardMovement()
+    {
+        $this->assertFalse(
+            (new Movement(self::LEFT))->isForward()
         );
     }
 

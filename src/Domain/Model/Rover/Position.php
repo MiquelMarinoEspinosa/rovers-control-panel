@@ -42,4 +42,44 @@ class Position
     {
         return $this->cardinal->value();
     }
+
+    public function move(Movement $movement): self
+    {
+        $newCardinal = $this->cardinal->move($movement);
+        if (!$movement->isForward()) {
+            return new self($this->coordinates, $newCardinal);
+        }
+        $newCoordinates = $this->moveCoordinatesForward();
+
+        return new self($newCoordinates, $newCardinal);
+    }
+
+    private function moveCoordinatesForward(): Coordinates
+    {
+        switch ($this->cardinal->value()) {
+            case Cardinal::NORTH:
+                return $this->coordinates->incrementOrdinate();
+            case Cardinal::SOUTH:
+                try {
+                    return $this->coordinates->decrementOrdinate();
+                } catch (\InvalidArgumentException $invalidArgumentException) {
+                    $message = $invalidArgumentException->getMessage();
+                    throw new PositionOutOfTheMap(
+                        'POSITION move error decrement ordinate south cardinal: ' . $message
+                    );
+                }
+            case Cardinal::WEST:
+                return $this->coordinates->incrementAbscissa();
+            //EAST
+            default:
+                try {
+                    return $this->coordinates->decrementAbscissa();
+                } catch (\InvalidArgumentException $invalidArgumentException) {
+                    $message = $invalidArgumentException->getMessage();
+                    throw new PositionOutOfTheMap(
+                        'POSITION move error decrement abscissa east cardinal: ' . $message
+                    );
+                }
+        }
+    }
 }

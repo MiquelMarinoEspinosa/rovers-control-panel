@@ -35,4 +35,9 @@ class Movement
     {
         return $this->value;
     }
+
+    public function isForward(): bool
+    {
+        return self::FORWARD === $this->value;
+    }
 }
