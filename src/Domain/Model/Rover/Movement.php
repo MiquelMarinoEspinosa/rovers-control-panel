@@ -4,9 +4,9 @@ namespace RoverControlPanel\Domain\Model\Rover;
 
 class Movement
 {
-    private const LEFT = 'L';
-    private const RIGHT = 'R';
-    private const FORWARD = 'M';
+    const LEFT = 'L';
+    const RIGHT = 'R';
+    const FORWARD = 'M';
     private const ALLOWED_VALUES = [
         self::LEFT,
         self::RIGHT,

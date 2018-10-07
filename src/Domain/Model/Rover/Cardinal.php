@@ -15,6 +15,29 @@ class Cardinal
         self::WEST
     ];
 
+    private const NEXT_CARDINAL = [
+        self::NORTH => [
+            Movement::LEFT => self::EAST,
+            Movement::RIGHT => self::WEST,
+            Movement::FORWARD => self::NORTH
+        ],
+        self::SOUTH => [
+            Movement::LEFT => self::WEST,
+            Movement::RIGHT => self::EAST,
+            Movement::FORWARD => self::SOUTH
+        ],
+        self::EAST => [
+            Movement::LEFT => self::SOUTH,
+            Movement::RIGHT => self::NORTH,
+            Movement::FORWARD => self::EAST
+        ],
+        self::WEST => [
+            Movement::LEFT => self::NORTH,
+            Movement::RIGHT => self::SOUTH,
+            Movement::FORWARD => self::WEST
+        ]
+    ];
+
     /** @var string $value */
     private $value;
 
@@ -37,5 +60,12 @@ class Cardinal
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function move(Movement $movement): self
+    {
+        $nextValue = self::NEXT_CARDINAL[$this->value][$movement->value()];
+
+        return new self($nextValue);
     }
 }
