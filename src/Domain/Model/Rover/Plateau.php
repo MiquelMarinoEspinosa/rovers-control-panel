@@ -14,7 +14,7 @@ class Plateau
         $this->setTopRight($topRight);
     }
 
-    public static function create($topRightAbscissa, $topRightOrdinate): self
+    public static function build($topRightAbscissa, $topRightOrdinate): self
     {
 
         try {

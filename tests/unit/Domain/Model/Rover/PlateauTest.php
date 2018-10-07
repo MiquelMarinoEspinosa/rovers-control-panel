@@ -15,7 +15,7 @@ class PlateauTest extends TestCase
         $topRightAbscissa = 0;
         $topRightOrdinate = -1;
         try {
-            Plateau::create($topRightAbscissa, $topRightOrdinate);
+            Plateau::build($topRightAbscissa, $topRightOrdinate);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $this->assertNotFalse(
                 strpos(strtolower($invalidArgumentException->getMessage()), 'plateau')
@@ -28,7 +28,7 @@ class PlateauTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $topRightAbscissa = 0;
         $topRightOrdinate = 0;
-        Plateau::create($topRightAbscissa, $topRightOrdinate);
+        Plateau::build($topRightAbscissa, $topRightOrdinate);
     }
 
     public function testTopRightCoordinatesHasToBeEqualsBetweenThem()
@@ -36,14 +36,14 @@ class PlateauTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $topRightAbscissa = 1;
         $topRightOrdinate = 2;
-        Plateau::create($topRightAbscissa, $topRightOrdinate);
+        Plateau::build($topRightAbscissa, $topRightOrdinate);
     }
 
     public function testValidPlateauHasToReturnTheBottomLeftAbscissaValue()
     {
         $topRightAbscissa = 5;
         $topRightOrdinate = 5;
-        $plateau = Plateau::create($topRightAbscissa, $topRightOrdinate);
+        $plateau = Plateau::build($topRightAbscissa, $topRightOrdinate);
         $this->assertSame(
             self::BOTTOM_LEFT_ABSCISSA,
             $plateau->bottomLeftAbscissa()
@@ -54,7 +54,7 @@ class PlateauTest extends TestCase
     {
         $topRightAbscissa = 5;
         $topRightOrdinate = 5;
-        $plateau = Plateau::create($topRightAbscissa, $topRightOrdinate);
+        $plateau = Plateau::build($topRightAbscissa, $topRightOrdinate);
         $this->assertSame(
             self::BOTTOM_LEFT_ORDINATE,
             $plateau->bottomLeftOrdinate()
@@ -65,7 +65,7 @@ class PlateauTest extends TestCase
     {
         $topRightAbscissa = 5;
         $topRightOrdinate = 5;
-        $plateau = Plateau::create($topRightAbscissa, $topRightOrdinate);
+        $plateau = Plateau::build($topRightAbscissa, $topRightOrdinate);
         $this->assertSame(
             $topRightAbscissa,
             $plateau->topRightAbscissa()
@@ -76,7 +76,7 @@ class PlateauTest extends TestCase
     {
         $topRightAbscissa = 5;
         $topRightOrdinate = 5;
-        $plateau = Plateau::create($topRightAbscissa, $topRightOrdinate);
+        $plateau = Plateau::build($topRightAbscissa, $topRightOrdinate);
         $this->assertSame(
             $topRightOrdinate,
             $plateau->topRightOrdinate()

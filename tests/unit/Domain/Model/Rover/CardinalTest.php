@@ -60,7 +60,7 @@ class CardinalTest extends TestCase
     {
         $cardinal = new Cardinal($value);
         $this->assertEquals(
-            $cardinal->getValue(),
+            $cardinal->value(),
             $value
         );
     }
@@ -77,7 +77,7 @@ class CardinalTest extends TestCase
         $newCardinal = $cardinal->move($movement);
         $this->assertEquals(
             $value,
-            $newCardinal->getValue()
+            $newCardinal->value()
         );
     }
 
@@ -93,7 +93,7 @@ class CardinalTest extends TestCase
         $newCardinal = $cardinal->move($movement);
         $this->assertEquals(
             $value,
-            $newCardinal->getValue()
+            $newCardinal->value()
         );
     }
 
@@ -109,7 +109,7 @@ class CardinalTest extends TestCase
         $newCardinal = $cardinal->move($movement);
         $this->assertEquals(
             $value,
-            $newCardinal->getValue()
+            $newCardinal->value()
         );
     }
 
@@ -125,7 +125,7 @@ class CardinalTest extends TestCase
         $newCardinal = $cardinal->move($movement);
         $this->assertEquals(
             $value,
-            $newCardinal->getValue()
+            $newCardinal->value()
         );
     }
 
