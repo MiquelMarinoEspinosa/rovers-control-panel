@@ -13,7 +13,7 @@ class Coordinates
     /** @var int */
     private $ordinate;
 
-    public function __construct(int $abscissa, int $ordinate)
+    public function __construct($abscissa, $ordinate)
     {
         $this->setAbscissa($abscissa);
         $this->setOrdinate($ordinate);
@@ -35,7 +35,7 @@ class Coordinates
     {
         if (!is_int($value)) {
             throw new \InvalidArgumentException(
-                "The $name has to be numeric. Given: $value"
+                "The $name has to be an integer value. Given: $value"
             );
         }
 

@@ -7,6 +7,22 @@ use RoverControlPanel\Domain\Model\Rover\Coordinates;
 
 class CoordinatesTest extends TestCase
 {
+    public function testAbscissaShouldBeAnInteger()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $abscissa = "A";
+        $ordinate = 0;
+        new Coordinates($abscissa, $ordinate);
+    }
+
+    public function testOrdinateShouldBeEqualAnInteger()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $abscissa = 0;
+        $ordinate = "B";
+        new Coordinates($abscissa, $ordinate);
+    }
+
     public function testAbscissaShouldBeEqualOrGreaterZero()
     {
         $this->expectException(\InvalidArgumentException::class);
