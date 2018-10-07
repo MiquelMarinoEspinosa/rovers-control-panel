@@ -7,7 +7,7 @@ class Movement
     private const LEFT = 'L';
     private const RIGHT = 'R';
     private const FORWARD = 'M';
-    const ALLOWED_VALUES = [
+    private const ALLOWED_VALUES = [
         self::LEFT,
         self::RIGHT,
         self::FORWARD

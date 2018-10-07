@@ -7,7 +7,14 @@ use RoverControlPanel\Domain\Model\Rover\Cardinal;
 
 class CardinalTest extends TestCase
 {
-    private const VALID_VALUES = [Cardinal::ALLOWED_VALUES];
+    private const VALID_VALUES = [
+        [
+            'N',
+            'S',
+            'E',
+            'W'
+        ]
+    ];
 
     public function testCardinalValueShouldBeValid()
     {

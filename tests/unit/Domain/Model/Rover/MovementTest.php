@@ -7,7 +7,13 @@ use RoverControlPanel\Domain\Model\Rover\Movement;
 
 class MovementTest extends TestCase
 {
-    private const VALID_VALUES = [Movement::ALLOWED_VALUES];
+    private const VALID_VALUES = [
+        [
+            'L',
+            'R',
+            'M'
+        ]
+    ];
 
     public function testValueShouldBeValid()
     {

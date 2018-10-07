@@ -8,7 +8,7 @@ class Cardinal
     private const SOUTH = 'S';
     private const EAST = 'E';
     private const WEST = 'W';
-    const ALLOWED_VALUES = [
+    private const ALLOWED_VALUES = [
         self::NORTH,
         self::SOUTH,
         self::EAST,
