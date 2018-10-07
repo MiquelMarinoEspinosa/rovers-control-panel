@@ -60,4 +60,26 @@ class CoordinatesTest extends TestCase
             $coordinates->ordinate()
         );
     }
+
+    public function testShouldIncrementTheAbscissaValue()
+    {
+        $abscissa = 0;
+        $ordinate = 1;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $this->assertSame(
+            $abscissa + 1,
+            $coordinates->incrementAbscissa()->abscissa()
+        );
+    }
+
+    public function testShouldIncrementTheOrdinateValue()
+    {
+        $abscissa = 0;
+        $ordinate = 1;
+        $coordinates = new Coordinates($abscissa, $ordinate);
+        $this->assertSame(
+            $ordinate + 1,
+            $coordinates->incrementOrdinate()->ordinate()
+        );
+    }
 }

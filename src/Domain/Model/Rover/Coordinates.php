@@ -55,4 +55,14 @@ class Coordinates
     {
         return $this->ordinate;
     }
+
+    public function incrementAbscissa(): self
+    {
+        return new self($this->abscissa + 1, $this->ordinate);
+    }
+
+    public function incrementOrdinate(): self
+    {
+        return new self($this->abscissa, $this->ordinate + 1);
+    }
 }
