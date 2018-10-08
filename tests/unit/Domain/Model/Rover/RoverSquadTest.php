@@ -180,7 +180,7 @@ class RoverSquadTest extends TestCase
 
         $this->assertEquals(
             $roverSquadExplored,
-            $roverSquad->move($instructionCollection)
+            $roverSquad->explore($instructionCollection)
         );
     }
 }

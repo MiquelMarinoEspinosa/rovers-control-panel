@@ -43,7 +43,7 @@ class RoverSquad
         return next($this->rovers);
     }
 
-    public function move(InstructionCollection $instructionCollection): self
+    public function explore(InstructionCollection $instructionCollection): self
     {
         $rovers = [];
         $rover = current($this->rovers);
