@@ -69,9 +69,6 @@ class Position
                     );
                 }
             case Cardinal::WEST:
-                return $this->coordinates->incrementAbscissa();
-            //EAST
-            default:
                 try {
                     return $this->coordinates->decrementAbscissa();
                 } catch (\InvalidArgumentException $invalidArgumentException) {
@@ -80,6 +77,9 @@ class Position
                         'POSITION move error decrement abscissa east cardinal: ' . $message
                     );
                 }
+            //EAST
+            default:
+                return $this->coordinates->incrementAbscissa();
         }
     }
 }

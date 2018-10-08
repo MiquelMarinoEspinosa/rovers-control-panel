@@ -20,7 +20,6 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true" addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/Domain</directory>
-            <directory suffix=".php">src/Application</directory>
         </whitelist>
     </filter>
 </phpunit>

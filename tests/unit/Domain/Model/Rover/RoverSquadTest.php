@@ -149,7 +149,7 @@ class RoverSquadTest extends TestCase
         $roverSquad = RoverSquad::build($plateau, $positions);
 
 
-        $instructionAsArray = [['L','R','M'], ['R', 'M', 'R', 'M']];
+        $instructionAsArray = [['L','R','M'], ['L', 'M', 'R', 'M']];
         $instructionCollection = InstructionCollection::build($instructionAsArray);
 
         $topRightAbscissa = 2;
@@ -168,7 +168,7 @@ class RoverSquadTest extends TestCase
 
         $anotherPositionAbscissa = 1;
         $anotherPositionOrdinate = 1;
-        $anotherPositionCardinal = self::WEST;
+        $anotherPositionCardinal = self::EAST;
         $anotherPosition = [
             $anotherPositionAbscissa,
             $anotherPositionOrdinate,

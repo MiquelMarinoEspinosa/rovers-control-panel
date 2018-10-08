@@ -25,23 +25,23 @@ class CardinalTest extends TestCase
         ]
     ];
     private const NORTH_MOVEMENTS = [
-        [self::LEFT, self::EAST],
-        [self::RIGHT, self::WEST],
+        [self::LEFT, self::WEST],
+        [self::RIGHT, self::EAST],
         [self::FORWARD, self::NORTH]
     ];
     private const SOUTH_MOVEMENTS = [
-        [self::LEFT, self::WEST],
-        [self::RIGHT, self::EAST],
+        [self::LEFT, self::EAST],
+        [self::RIGHT, self::WEST],
         [self::FORWARD, self::SOUTH]
     ];
     private const EAST_MOVEMENTS = [
-        [self::LEFT, self::SOUTH],
-        [self::RIGHT, self::NORTH],
+        [self::LEFT, self::NORTH],
+        [self::RIGHT, self::SOUTH],
         [self::FORWARD, self::EAST]
     ];
     private const WEST_MOVEMENTS = [
-        [self::LEFT, self::NORTH],
-        [self::RIGHT, self::SOUTH],
+        [self::LEFT, self::SOUTH],
+        [self::RIGHT, self::NORTH],
         [self::FORWARD, self::WEST]
     ];
 

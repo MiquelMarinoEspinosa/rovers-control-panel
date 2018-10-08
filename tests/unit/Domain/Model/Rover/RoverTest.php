@@ -114,7 +114,7 @@ class RoverTest extends TestCase
         $topRightOrdinate = 2;
         $positionAbscissa = 0;
         $positionOrdinate = 0;
-        $positionCardinal = self::EAST;
+        $positionCardinal = self::WEST;
 
         $rover = Rover::build(
             $topRightAbscissa,
@@ -168,7 +168,7 @@ class RoverTest extends TestCase
         $topRightOrdinate = 2;
         $positionAbscissa = 2;
         $positionOrdinate = 2;
-        $positionCardinal = self::WEST;
+        $positionCardinal = self::EAST;
 
         $rover = Rover::build(
             $topRightAbscissa,

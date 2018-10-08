@@ -110,7 +110,7 @@ class PositionTest extends TestCase
         $newPosition = $position->move($movement);
 
         $this->assertEquals(
-            self::EAST,
+            self::WEST,
             $newPosition->cardinal()
         );
 
@@ -177,11 +177,11 @@ class PositionTest extends TestCase
         );
     }
 
-    public function testMoveForwardWestShouldIncrementAbscissaCoordinates()
+    public function testMoveForwardEastShouldIncrementAbscissaCoordinates()
     {
         $abscissa = 3;
         $ordinate = 3;
-        $cardinal = self::WEST;
+        $cardinal = self::EAST;
 
         $position = Position::build($abscissa, $ordinate, $cardinal);
         $movement = new Movement(self::FORWARD);
@@ -203,11 +203,11 @@ class PositionTest extends TestCase
         );
     }
 
-    public function testMoveForwardEastShouldDecrementAbscissaCoordinates()
+    public function testMoveForwardWestShouldDecrementAbscissaCoordinates()
     {
         $abscissa = 3;
         $ordinate = 3;
-        $cardinal = self::EAST;
+        $cardinal = self::WEST;
 
         $position = Position::build($abscissa, $ordinate, $cardinal);
         $movement = new Movement(self::FORWARD);
@@ -229,11 +229,11 @@ class PositionTest extends TestCase
         );
     }
 
-    public function testEastCardinalAndZeroAbscissaMoveForwardShouldThrowAnException()
+    public function testWestCardinalAndZeroAbscissaMoveForwardShouldThrowAnException()
     {
         $abscissa = 0;
         $ordinate = 3;
-        $cardinal = self::EAST;
+        $cardinal = self::WEST;
         $position = Position::build($abscissa, $ordinate, $cardinal);
         $movement = new Movement(self::FORWARD);
 
