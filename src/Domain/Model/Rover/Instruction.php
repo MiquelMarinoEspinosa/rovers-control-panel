@@ -41,6 +41,11 @@ class Instruction
 
     public function next()
     {
-        next($this->movements);
+        return next($this->movements);
+    }
+
+    public function movements(): array
+    {
+        return $this->movements;
     }
 }

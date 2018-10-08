@@ -4,6 +4,7 @@ namespace RoverControlPanel\Tests\Unit\Domain\Model\Rover;
 
 use PHPUnit\Framework\TestCase;
 use RoverControlPanel\Domain\Model\Rover\Instruction;
+use RoverControlPanel\Domain\Model\Rover\Movement;
 
 class InstructionTest extends TestCase
 {
@@ -46,6 +47,21 @@ class InstructionTest extends TestCase
         $this->assertEquals(
             'R',
             $movement->value()
+        );
+    }
+
+    public function testShouldReturnTheMovements()
+    {
+        $movementsAsString = ['L','R','M','R'];
+        $instruction = Instruction::build($movementsAsString);
+        $movements = [];
+        foreach ($movementsAsString as $movmentAsString) {
+            $movements[] = new Movement($movmentAsString);
+        }
+
+        $this->assertEquals(
+            $movements,
+            $instruction->movements()
         );
     }
 }

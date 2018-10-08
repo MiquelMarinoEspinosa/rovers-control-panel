@@ -32,8 +32,8 @@ class InstructionCollection
         return current($this->instructions);
     }
 
-    public function next(): void
+    public function next()
     {
-        next($this->instructions);
+        return next($this->instructions);
     }
 }
