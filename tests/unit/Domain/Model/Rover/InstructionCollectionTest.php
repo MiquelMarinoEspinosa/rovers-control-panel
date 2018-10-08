@@ -11,21 +11,23 @@ class InstructionCollectionTest extends TestCase
     public function testShouldReturnAnEmptyCollection()
     {
         $this->assertTrue(
-            (InstructionCollection::create([]))->isEmpty()
+            (InstructionCollection::build([]))->isEmpty()
         );
     }
 
     public function testShouldReturnANotEmptyCollection()
     {
+        $instructionAsArray = ['L','R','M'];
         $this->assertFalse(
-            (InstructionCollection::create(['LRM']))->isEmpty()
+            (InstructionCollection::build([$instructionAsArray]))->isEmpty()
         );
     }
 
     public function testShouldReturnTheCurrentValue()
     {
-        $instruction = Instruction::create('LRM');
-        $instructionCollection = InstructionCollection::create(['LRM']);
+        $instructionAsArray = ['L','R','M'];
+        $instruction = Instruction::build($instructionAsArray);
+        $instructionCollection = InstructionCollection::build([$instructionAsArray]);
         $this->assertEquals(
             $instruction,
             $instructionCollection->current()
@@ -34,8 +36,10 @@ class InstructionCollectionTest extends TestCase
 
     public function testShouldReturnTheNextValue()
     {
-        $anotherInstruction = Instruction::create('MRL');
-        $instructionCollection = InstructionCollection::create(['LRM', 'MRL']);
+        $instructionAsArray = ['M','R','L'];
+        $anotherInstructionAsArray = ['L','R','M'];
+        $anotherInstruction = Instruction::build($instructionAsArray);
+        $instructionCollection = InstructionCollection::build([$anotherInstructionAsArray, $instructionAsArray]);
         $instructionCollection->next();
         $this->assertEquals(
             $anotherInstruction,

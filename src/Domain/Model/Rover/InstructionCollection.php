@@ -12,11 +12,11 @@ class InstructionCollection
         $this->instructions = $instructions;
     }
 
-    public static function create(array $instructions): self
+    public static function build(array $instructions): self
     {
         $instructionsObjects = [];
         foreach ($instructions as $instruction) {
-            $instructionsObjects[] = Instruction::create($instruction);
+            $instructionsObjects[] = Instruction::build($instruction);
         }
 
         return new self($instructionsObjects);

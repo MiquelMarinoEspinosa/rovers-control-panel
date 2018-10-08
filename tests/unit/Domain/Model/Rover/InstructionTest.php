@@ -9,8 +9,8 @@ class InstructionTest extends TestCase
 {
     public function testEmptyMovementsShouldReturnAnEmptyInstruction()
     {
-        $movementsAsString = '';
-        $instruction = Instruction::create($movementsAsString);
+        $movementsAsString = [];
+        $instruction = Instruction::build($movementsAsString);
         $this->assertTrue(
             $instruction->isEmpty()
         );
@@ -18,8 +18,8 @@ class InstructionTest extends TestCase
 
     public function testNotEmptyMovementsShouldReturnAnNotEmptyInstruction()
     {
-        $movementsAsString = 'L';
-        $instruction = Instruction::create($movementsAsString);
+        $movementsAsString = ['L'];
+        $instruction = Instruction::build($movementsAsString);
         $this->assertFalse(
             $instruction->isEmpty()
         );
@@ -27,9 +27,9 @@ class InstructionTest extends TestCase
 
     public function testSomeValidMovementShouldThrownAnException()
     {
-        $movementsAsString = 'LRMF';
+        $movementsAsString = ['L','R','M','F'];
         try {
-            Instruction::create($movementsAsString);
+            Instruction::build($movementsAsString);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $this->assertNotFalse(
                 strpos(strtolower($invalidArgumentException->getMessage()), 'instruction')
@@ -39,8 +39,8 @@ class InstructionTest extends TestCase
 
     public function testShouldReturnTheNextMovement()
     {
-        $movementsAsString = 'LRMR';
-        $instruction = Instruction::create($movementsAsString);
+        $movementsAsString = ['L','R','M','R'];
+        $instruction = Instruction::build($movementsAsString);
         $instruction->next();
         $movement = $instruction->current();
         $this->assertEquals(

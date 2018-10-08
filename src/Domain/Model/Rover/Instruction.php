@@ -12,20 +12,16 @@ class Instruction
         $this->movements = $movements;
     }
 
-    public static function create($movements): self
+    public static function build($movements): self
     {
-        if (empty($movements)) {
-            return new self([]);
-        }
-
         $movementsAsArray = [];
-        foreach (str_split($movements) as $movement) {
+        foreach ($movements as $movement) {
             try {
                 $movementsAsArray[] = new Movement($movement);
             } catch (\InvalidArgumentException $invalidArgumentException) {
                 throw new \InvalidArgumentException(
                     'INSTRUCTION create error: ' . $invalidArgumentException . PHP_EOL
-                    . 'Given Value: ' . $movements
+                    . 'Given Value: ' . implode(',', $movements)
                 );
             }
         }
