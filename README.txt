@@ -1,4 +1,5 @@
 Add to the /etc/hosts the rovers-control-panel.nasa.org. Sample of the first entry
+	sudo vi /etc/hosts
 	127.0.0.1	localhost rovers-control-panel.nasa.org	
 
 Build de docker nginx and php-fpm containers
