@@ -9,4 +9,4 @@ default:
       paths:
         - '%paths.base%/../tests/acceptance/UserInterface/Api/Behat'
       contexts:
-        - RoverPanelControl\Tests\Acceptance\UserInterface\Api\Behat\RoverPanelControlContext
+        - RoverControlPanel\Tests\Acceptance\UserInterface\Api\Behat\RoverControlPanelContext

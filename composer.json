@@ -16,7 +16,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "RoverControlPanel\\Tests\\Unit\\": "tests/unit/"
+            "RoverControlPanel\\Tests\\Unit\\": "tests/unit/",
+            "RoverControlPanel\\Tests\\Acceptance\\": "tests/acceptance/"
         }
     },
     "require": {
