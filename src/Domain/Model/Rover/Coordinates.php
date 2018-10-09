@@ -33,7 +33,7 @@ class Coordinates
 
     private function validate(string $name, $value): void
     {
-        if (!is_int($value)) {
+        if (!is_numeric($value)) {
             throw new \InvalidArgumentException(
                 "The COORDINATE $name has to be an integer value. Given: $value"
             );

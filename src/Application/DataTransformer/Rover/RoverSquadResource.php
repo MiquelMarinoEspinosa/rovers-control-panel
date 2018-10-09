@@ -12,6 +12,9 @@ class RoverSquadResource
         $this->roverResources = $roverResources;
     }
 
+    /**
+     * @return RoverResource[]
+     */
     public function getRoverResources(): array
     {
         return $this->roverResources;
