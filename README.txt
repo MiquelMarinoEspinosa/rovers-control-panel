@@ -1,9 +1,48 @@
-- Create file .env with your ip address based on .env.dist
-- docker-compose up
-- Edit /etc/hosts adding site.org to the localhost entry like this
-        127.0.0.1       localhost site.org
-- docker exec -i -t miquel.php-fpm composer install
-- docker exec -i -t miquel.php-fpm vendor/bin/behat
-- Access to the url extract from acceptance test via browser
-         Then the user should have been created  # Php\Fpm\Tests\Acceptance\UserInterface\Api\Behat\SiteContext::theUserShouldHaveBeenCreated()
-               │ https://site.org/user/60452bfc-963b-4c59-a5a9-11caaa39c1a2
+Add to the /etc/hosts the rovers-control-panel.nasa.org. Sample of the first entry
+	127.0.0.1	localhost rovers-control-panel.nasa.org	
+
+Build de docker nginx and php-fpm containers
+	docker-compose up
+
+Install the composer dependencies
+	docker exec -i -t nasa.php-fpm composer install
+
+Execute the unit tests
+	docker exec -i -t nasa.php-fpm vendor/bin/phpunit
+
+Execute the unit tests with coverage
+	docker exec -i -t nasa.php-fpm vendor/bin/phpunit --coverage-html coverage
+	open coverage/index.html
+
+Execute the behat acceptance tests
+	docker exec -i -t nasa.php-fpm vendor/bin/behat
+
+Execute the documentation sample as a CURL
+	curl --request POST -d '{"plateau": "5 5", "roverSquad":[{"position": "1 2 N", "instructions":"LMLMLMLMM"}, {"position": "3 3 E", "instructions":"MMRMMRMRRM"}]}' -H "Content-Type: application/json"  https://rovers-control-panel.nasa.org/explore --insecure
+
+Format json request sample
+{
+   "plateau":"5 5",
+   "roverSquad":[  
+      {  
+         "position":"1 2 N",
+         "instructions":"LMLMLMLMM"
+      },
+      {  
+         "position":"3 3 E",
+         "instructions":"MMRMMRMRRM"
+      }
+   ]
+}
+
+Format json response sample
+{  
+   "roverSquad":[  
+      {  
+         "position":"1 3 N"
+      },
+      {  
+         "position":"5 1 E"
+      }
+   ]
+}
