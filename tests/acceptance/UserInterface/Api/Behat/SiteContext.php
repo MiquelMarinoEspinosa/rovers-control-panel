@@ -1,11 +1,11 @@
 <?php
 
-namespace Php\Fpm\Tests\Acceptance\UserInterface\Api\Behat;
+namespace RoverPanelControl\Tests\Acceptance\UserInterface\Api\Behat;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
 
-class SiteContext implements Context
+class RoverControlPanelContext implements Context
 {
     /** @var string */
     private $name;

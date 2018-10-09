@@ -1,46 +1,17 @@
 services:
-    user.user_controller:
-      class: Php\Fpm\UserInterface\Api\UserController
+    rover_panel_control.rover_panel_control_controller:
+      class: RoverControlPanel\UserInterface\Api\RoverControlPanelController
       arguments:
         - '@request_stack'
-        - '@user.get_user_use_case'
-        - '@user.create_user_use_case'
+        - '@rover_panel_control.rover_squad_exploration_use_case'
       public: true
 
-    user.get_user_use_case:
-      class: Php\Fpm\Application\UseCase\User\GetUserUseCase
+    rover_panel_control.rover_squad_exploration_use_case:
+      class: RoverControlPanel\Application\UseCase\Rover\RoverSquadExplorationUseCase
       arguments:
-        - '@user.redis_user_repository'
-        - '@user.user_data_transformer'
+        - '@rover_control_panel.rover_squad_data_transformer'
       public: true
 
-    user.create_user_use_case:
-      class: Php\Fpm\Application\UseCase\User\CreateUserUseCase
-      arguments:
-        - '@user.uuid_user_id_generator'
-        - '@user.redis_user_repository'
-        - '@user.user_data_transformer'
-      public: true
-
-    user.redis_user_repository:
-      class: Php\Fpm\Infrastructure\Domain\Model\User\RedisUserRepository
-      arguments:
-        - '@user.redis_master_connection'
-      public: true
-
-    user.user_data_transformer:
-      class: Php\Fpm\Application\DataTransformer\User\UserDataTransformer
-      public: true
-
-    user.redis_master_connection:
-      class: \Redis
-      calls:
-        - method: connect
-          arguments:
-            - '%redis.master.host%'
-            - '%redis.master.port%'
-      public: true
-
-    user.uuid_user_id_generator:
-      class:  Php\Fpm\Infrastructure\Domain\Model\User\UuidUserIdGenerator
+    rover_control_panel.rover_squad_data_transformer:
+      class: RoverControlPanel\Application\DataTransformer\Rover\RoverSquadDataTransformer
       public: true

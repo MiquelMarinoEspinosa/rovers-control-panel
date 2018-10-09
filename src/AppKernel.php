@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Fpm;
+namespace RoverControlPanel;
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;

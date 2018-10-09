@@ -1,9 +1,4 @@
-user_get:
-    path: /user/{userId}
-    defaults:  { _controller: user.user_controller:getAction }
-    methods:   [GET]
-
-user_post:
-    path: /user
-    defaults:  { _controller: user.user_controller:postAction }
+explore_post:
+    path: /explore
+    defaults:  { _controller: rover_panel_control.rover_panel_control_controller:postAction }
     methods:   [POST]
