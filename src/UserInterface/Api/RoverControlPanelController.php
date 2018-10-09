@@ -5,8 +5,11 @@ namespace RoverControlPanel\UserInterface\Api;
 use RoverControlPanel\Application\DataTransformer\Rover\RoverSquadResource;
 use RoverControlPanel\Application\UseCase\Rover\RoverSquadExplorationRequest;
 use RoverControlPanel\Application\UseCase\Rover\RoverSquadExplorationUseCase;
+use RoverControlPanel\Domain\Model\Rover\MoveRoverError;
+use RoverControlPanel\Domain\Model\Rover\PositionOutOfTheMap;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoverControlPanelController
 {
@@ -25,23 +28,45 @@ class RoverControlPanelController
 
     public function postAction()
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        $requestBody = json_decode(
-            $currentRequest->getContent(),
-            true
-        );
+        try {
+            $currentRequest = $this->requestStack->getCurrentRequest();
+            $requestBody = json_decode(
+                $currentRequest->getContent(),
+                true
+            );
 
-        $roverSquadExplorationRequest = $this->buildRoverSquadExplorationRequest(
-            $requestBody
-        );
+            $roverSquadExplorationRequest = $this->buildRoverSquadExplorationRequest(
+                $requestBody
+            );
 
-        $roverSquadResource = $this->roverSquadExplorationUseCase->execute(
-            $roverSquadExplorationRequest
-        );
+            $roverSquadResource = $this->roverSquadExplorationUseCase->execute(
+                $roverSquadExplorationRequest
+            );
 
-        return new JsonResponse(
-            $this->buildResponse($roverSquadResource)
-        );
+            return new JsonResponse(
+                $this->buildResponse(
+                    $roverSquadResource
+                )
+            );
+        } catch (\Exception $exception) {
+            $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+            if ($exception instanceof \InvalidArgumentException
+                || $exception instanceof PositionOutOfTheMap
+                || $exception instanceof MoveRoverError
+            ) {
+                $statusCode = Response::HTTP_BAD_REQUEST;
+            }
+
+            return new JsonResponse(
+                [
+                    'error' => [
+                        'code' => $statusCode,
+                        'message' => $exception->getMessage()
+                    ]
+                ],
+                $statusCode
+            );
+        }
     }
 
     private function buildRoverSquadExplorationRequest($requestBody): RoverSquadExplorationRequest
@@ -77,6 +102,6 @@ class RoverControlPanelController
             ];
         }
 
-        return ['roverSquad' => $roverSquadAsArray];
+        return  ['roverSquad' => $roverSquadAsArray];
     }
 }
