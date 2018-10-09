@@ -31,13 +31,6 @@ class PlateauTest extends TestCase
         Plateau::build($topRightAbscissa, $topRightOrdinate);
     }
 
-    public function testTopRightCoordinatesHasToBeEqualsBetweenThem()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $topRightAbscissa = 1;
-        $topRightOrdinate = 2;
-        Plateau::build($topRightAbscissa, $topRightOrdinate);
-    }
 
     public function testValidPlateauHasToReturnTheBottomLeftAbscissaValue()
     {

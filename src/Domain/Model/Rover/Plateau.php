@@ -40,13 +40,6 @@ class Plateau
             );
         }
 
-        if ($abscissa !== $ordinate) {
-            throw new \InvalidArgumentException(
-                'PLATEAU creation error:' . PHP_EOL
-                . 'Top Right coordinates have to be euql.' . PHP_EOL
-                . "Given Bottom Right Coordinates: $abscissa $ordinate"
-            );
-        }
         $this->topRight = $topRight;
     }
 
